@@ -14,16 +14,11 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          extensions: mbstring, xml, bcmath, curl
+          extensions: mbstring, dom, fileinfo, filter, hash, libxml, mbstring, openssl, pcre, pdo, session, tokenizer, xml
           tools: composer
 
-      - name: Remove composer.lock (Force Refresh)
-        run: rm -f composer.lock
-
       - name: Install Dependencies
-        run: composer update --no-interaction --prefer-dist --ignore-platform-reqs
+        run: composer install --no-interaction --prefer-dist --ignore-platform-reqs --no-scripts
 
-      - name: Check PHP and Composer
-        run: |
-          php -v
-          composer --version
+      - name: Check version
+        run: php -v
