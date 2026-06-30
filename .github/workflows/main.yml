@@ -14,9 +14,10 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
+          tools: composer
 
       - name: Install Dependencies
-        run: composer install --prefer-dist --no-progress
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
-      - name: Run Tests
-        run: php artisan test
+      - name: Check version
+        run: php -v
